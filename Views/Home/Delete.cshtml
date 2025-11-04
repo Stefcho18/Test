@@ -1,0 +1,25 @@
+﻿@model Test.Models.Product
+@{
+    ViewData["Title"] = "Изтриване на продукт";
+}
+
+<h2 class="text-danger">Сигурен ли си, че искаш да изтриеш този продукт?</h2>
+
+<div class="border p-3 rounded bg-light" style="max-width: 500px;">
+    <dl class="row">
+        <dt class="col-sm-4">Име:</dt>
+        <dd class="col-sm-8">@Model.Name</dd>
+
+        <dt class="col-sm-4">Цена:</dt>
+        <dd class="col-sm-8">@Model.Price лв</dd>
+
+        <dt class="col-sm-4">Категория:</dt>
+        <dd class="col-sm-8">@Model.Category?.Name</dd>
+    </dl>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">🗑️ Изтрий</button>
+        <a asp-action="Index" class="btn btn-secondary">⬅️ Назад</a>
+    </form>
+</div>

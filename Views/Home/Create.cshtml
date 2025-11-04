@@ -1,0 +1,35 @@
+﻿@model Test.Models.Product
+@{
+    ViewData["Title"] = "Добавяне на продукт";
+}
+
+<h2 class="mb-4">Добавяне на нов продукт</h2>
+
+<form asp-action="Create" method="post" class="border p-4 rounded bg-light shadow-sm" style="max-width: 500px;">
+    <div class="form-group mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="Price" class="form-label"></label>
+        <input asp-for="Price" class="form-control" type="number" step="0.01" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+
+    <div class="form-group mb-3">
+        <label asp-for="CategoryId" class="form-label">Категория</label>
+        <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="form-select"></select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">💾 Запиши</button>
+    <a asp-action="Index" class="btn btn-secondary">⬅️ Назад</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

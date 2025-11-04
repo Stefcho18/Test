@@ -1,0 +1,39 @@
+﻿@model IEnumerable<Test.Models.Product>
+
+<h2>Списък с продукти</h2>
+<a asp-action="Create" class="btn btn-success">+ Добави продукт</a>
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>Име</th>
+            <th>Цена</th>
+            <th>Категория</th>
+            <th>Снимка</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (!Model.Any() || Model==null)
+        {
+            <tr>
+                <td colspan="5" class="text-center">Няма налични продукти.</td>
+            </tr>
+        }
+        else {
+        foreach (var p in Model)
+        {
+            <tr>
+                <td>@p.Name</td>
+                <td>@p.Price лв.</td>
+                <td>@p.Category.Name</td>
+                <td><img src="@p.UrlImg" width="80" /></td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@p.Id" class="btn btn-warning btn-sm">Редактирай</a>
+                    <a asp-action="Delete" asp-route-id="@p.Id" class="btn btn-danger btn-sm">Изтрий</a>
+                </td>
+            </tr>
+        }
+        }
+    </tbody>
+</table>

@@ -1,0 +1,25 @@
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace Test.Models
+{
+    public class Product
+    {
+        public int Id { get; set; }
+        [Required(ErrorMessage = "Моля, въведете име на продукта")]
+        public string ?Name { get; set; }
+
+        [Column(TypeName = "decimal(18,2)")]
+        [Range(0.1, 1000, ErrorMessage = "Цената трябва да е между 0.1 и 1000")]
+        public decimal Price { get; set; }
+
+        public string? UrlImg { get; set; }
+
+        // Външен ключ към категорията
+        [Display(Name = "Категория")]
+        public int CategoryId { get; set; }
+
+        // Навигационно свойство
+        public Category ?Category { get; set; }
+    }
+}
