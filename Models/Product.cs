@@ -15,6 +15,8 @@ namespace Test.Models
 
         public string? UrlImg { get; set; }
 
+        public string? Description { get; set; }
+
         // Външен ключ към категорията
         [Display(Name = "Категория")]
         public int CategoryId { get; set; }

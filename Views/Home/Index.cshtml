@@ -27,7 +27,12 @@
                 <td>@p.Name</td>
                 <td>@p.Price лв.</td>
                 <td>@p.Category.Name</td>
-                <td><img src="@p.UrlImg" width="80" /></td>
+                    <td>
+                        @if (!string.IsNullOrEmpty(p.UrlImg))
+                        {
+                            <img src="@p.UrlImg" width="100" />
+                        }
+                    </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@p.Id" class="btn btn-warning btn-sm">Редактирай</a>
                     <a asp-action="Delete" asp-route-id="@p.Id" class="btn btn-danger btn-sm">Изтрий</a>

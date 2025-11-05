@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Test.Models.Product>
+
+@{
+    ViewData["Title"] = "Menu";
+}
+
+<h1>Menu</h1>
+
+<tbody>
+ <table>
+@foreach (var item in Model) {
+        <tr>
+                <td>@item.Name</td>
+                <td>@item.Price лв.</td>
+                <td>@item.Category.Name</td>
+                <td><img src="@item.UrlImg" width="80" /></td>
+            <td>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Description</a> |
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>

@@ -5,7 +5,7 @@
 
 <h2 class="mb-4">Добавяне на нов продукт</h2>
 
-<form asp-action="Create" method="post" class="border p-4 rounded bg-light shadow-sm" style="max-width: 500px;">
+<form asp-action="Create" enctype="multipart/form-data" method="post" class="border p-4 rounded bg-light shadow-sm" style="max-width: 500px;">
     <div class="form-group mb-3">
         <label asp-for="Name" class="form-label"></label>
         <input asp-for="Name" class="form-control" />
@@ -16,6 +16,10 @@
         <label asp-for="Price" class="form-label"></label>
         <input asp-for="Price" class="form-control" type="number" step="0.01" />
         <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label>Снимка на продукта</label>
+        <input type="file" name="ImageFile" class="form-control" />
     </div>
 
     <div class="form-group mb-3">

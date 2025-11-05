@@ -36,8 +36,27 @@ namespace Test.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Product product)
+        public IActionResult Create(Product product, IFormFile ImageFile)
         {
+            if (ImageFile != null && ImageFile.Length > 0)
+            {
+                // Създаваме пътя до папката wwwroot/images
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
+
+                // Създаваме уникално име на файла
+                var uniqueFileName = Guid.NewGuid().ToString() + "_" + ImageFile.FileName;
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                // Записваме файла
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    ImageFile.CopyTo(stream);
+                }
+
+                // Записваме пътя в базата
+                product.UrlImg = "/images/" + uniqueFileName;
+            }
+
             if (ModelState.IsValid)
             {
                 _context.Products.Add(product);
@@ -45,7 +64,6 @@ namespace Test.Controllers
                 return RedirectToAction(nameof(Index));
             }
 
-            // Ако има грешки, презареждаме списъка с категории
             ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
             return View(product);
         }

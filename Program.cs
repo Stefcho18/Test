@@ -40,7 +40,9 @@ public class Program
                 context.Categories.AddRange(
                     new Category { Name = "Супи" },
                     new Category { Name = "Оризови ястия" },
-                    new Category { Name = "Напитки" }
+                    new Category { Name = "Напитки" },
+                    new Category { Name = "Спагети"},
+                    new Category { Name = "Морски дарове" }
                 );
                 context.SaveChanges();
             }
