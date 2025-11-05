@@ -18,7 +18,7 @@ namespace Test.Controllers
             _logger = logger;
             _context = context;
         }
-
+        
         public IActionResult Index()
         {
             var products = _context.Products
@@ -27,7 +27,20 @@ namespace Test.Controllers
 
             return View(products);
         }
+      
+        public IActionResult Details(int id, string? returnUrl)
+        {
+            var product = _context.Products
+                .Include(p => p.Category)
+                .FirstOrDefault(p => p.Id == id);
 
+            if (product == null)
+                return NotFound();
+
+            // Запазваме адреса на страницата, от която сме дошли
+            ViewBag.ReturnUrl = returnUrl ?? Url.Action("Index");
+            return View(product);
+        }
         public IActionResult Create()
         {
             ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name");

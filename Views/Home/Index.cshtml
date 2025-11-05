@@ -30,9 +30,24 @@
                     <td>
                         @if (!string.IsNullOrEmpty(p.UrlImg))
                         {
-                            <img src="@p.UrlImg" width="100" />
+                            <img src="@p.UrlImg" width="80" height="100" />
                         }
                     </td>
+
+                <td>
+                        @{
+                            // 🔹 Показваме само първите 20 думи
+                            var shortDescription = string.Join(" ", (p.Description ?? "").Split(' ').Take(10));
+                        }
+                        @shortDescription...
+                        <a asp-controller="Home"
+                           asp-action="Details"
+                           asp-route-id="@p.Id"
+                           asp-route-returnUrl="@Context.Request.Path"
+                        >
+                            Виж повече
+                        </a>
+                </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@p.Id" class="btn btn-warning btn-sm">Редактирай</a>
                     <a asp-action="Delete" asp-route-id="@p.Id" class="btn btn-danger btn-sm">Изтрий</a>
