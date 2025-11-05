@@ -25,6 +25,19 @@ namespace Test.Controllers
             var applicationDbContext = _context.Products.Include(p => p.Category);
             return View(await applicationDbContext.ToListAsync());
         }
+        public IActionResult Details(int id)
+        {
+            var product = _context.Products
+                .Include(p => p.Category)
+                .FirstOrDefault(p => p.Id == id);
+
+            if (product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
+        }
 
     }
 }
