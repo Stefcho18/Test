@@ -1,0 +1,15 @@
+﻿body {
+}
+.menu-item {
+    width: 50%;
+    height: 100%;
+    border: solid black 1px;
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+    #rectangle:hover {
+        background-color: rgb(226, 226, 226);
+        cursor:pointer;
+    }

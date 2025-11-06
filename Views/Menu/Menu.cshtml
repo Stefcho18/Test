@@ -3,39 +3,53 @@
 @{
     ViewData["Title"] = "Menu";
 }
-
+<link rel="stylesheet" href="~/css/menu.css" />
 <h1>Меню</h1>
 
 <table class="table table-striped">
     <tbody>
         @foreach (var item in Model)
         {
-            
+            <a asp-controller="Home"
+               asp-action="Details"
+               asp-route-id="@item.Id"
+               asp-route-returnUrl="@Context.Request.Path"
+               class="btn btn-warning btn-sm">
+
+                <div class="menu-item row-cols-lg-4 row-cols-md-6">
+                    <h2>@item.Name</h2>
+                    <p><strong>Цена:</strong> @item.Price лв.</p>
+                    <p><strong>Категория:</strong> @item.Category?.Name</p>
+                    @if (!string.IsNullOrEmpty(item.UrlImg))
+                    {
+                        <img src="@item.UrlImg" width="200" height="250" />
+                    }
+                </div>
+            </a>
 
 
-
-            <tr>
+                /*<tr>
                 <td>@item.Name</td>
                 <td>@item.Price лв.</td>
                 <td>@item.Category?.Name</td>
 
                 <td>
-                    @if (!string.IsNullOrEmpty(item.UrlImg))
-                    {
-                        <img src="@item.UrlImg" width="80" height="100" />
-                    }
+                @if (!string.IsNullOrEmpty(item.UrlImg))
+                {
+                <img src="@item.UrlImg" width="80" height="100" />
+                }
                 </td>
 
                 <td>
-                    <a asp-controller="Home"
-                       asp-action="Details"
-                       asp-route-id="@item.Id"
-                       asp-route-returnUrl="@Context.Request.Path"
-                       class="btn btn-warning btn-sm">
-                        Детайли
-                    </a>
+                <a asp-controller="Home"
+                asp-action="Details"
+                asp-route-id="@item.Id"
+                asp-route-returnUrl="@Context.Request.Path"
+                class="btn btn-warning btn-sm">
+                Детайли
+                </a>
                 </td>
-            </tr>
+                </tr>*/
         }
     </tbody>
 </table>
