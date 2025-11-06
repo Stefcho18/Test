@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using Test.Data;
 using Test.Models;
@@ -114,9 +115,84 @@ namespace Test.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        public IActionResult Edit(int? id, string returnUrl)
+        {
+
+            if (id == null || _context.Products == null) {
+                return NotFound();
+            }
+
+            var product = _context.Products.Include(p => p.Category)
+                .FirstOrDefault(p => p.Id == id);
+            if (product == null)
+            {
+                return NotFound();
+            }
+            ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name", product.Category);
+            ViewBag.ReturnUrl = returnUrl ?? Url.Action("Index");
+
+            return View(product);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Edit(int id, Product product, IFormFile? ImageFile, string? returnUrl) {
+            if (id != product.Id) return BadRequest();
+
+            if (!ModelState.IsValid) 
+            {
+                ViewBag.Categories = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
+                ViewBag.ReturnUrl = returnUrl ?? Url.Action("Index");
+                return View(product);
+            }
+
+            var productInDb = _context.Products.Find(id);
+
+            if (productInDb == null) return NotFound();
+
+            if (ImageFile != null && ImageFile.Length > 0)
+            {
+                var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
+                if (!Directory.Exists(uploadsFolder)) Directory.CreateDirectory(uploadsFolder);
+
+                var uniqueFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(ImageFile.FileName);
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    ImageFile.CopyTo(stream);
+                }
+
+                // опционално: изтриваме старата снимка ако съществува (проверка)
+                if (!string.IsNullOrEmpty(productInDb.UrlImg))
+                {
+                    var oldFilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", productInDb.UrlImg.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
+                    if (System.IO.File.Exists(oldFilePath))
+                    {
+                        try { System.IO.File.Delete(oldFilePath); } catch { /* логни грешка ако искаш */ }
+                    }
+                }
+
+                productInDb.UrlImg = "/images/" + uniqueFileName;
+            }
+
+            // Обновяваме полетата (без да заменяме цял обект – по-безопасно)
+            productInDb.Name = product.Name;
+            productInDb.Price = product.Price;
+            productInDb.CategoryId = product.CategoryId;
+            productInDb.Description = product.Description;
+
+            // Записваме промените
+            _context.SaveChanges();
+
+            // пренасочваме обратно към returnUrl (ако е зададен) или към Index
+            var destination = returnUrl ?? Url.Action("Index");
+            return Redirect(destination);
 
 
 
+
+        }
         public IActionResult Privacy()
         {
             return View();

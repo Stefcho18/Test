@@ -1,0 +1,67 @@
+﻿@model Test.Models.Product
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
+
+    <!-- скрито поле с id (MVC model binding ще свърже) -->
+    <input type="hidden" asp-for="Id" />
+
+    <!-- скрито поле, в което ще предадем returnUrl от ViewBag (ако има) -->
+    <input type="hidden" name="returnUrl" value="@(ViewBag.ReturnUrl ?? Url.Action("Index"))" />
+
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label"></label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Price" class="form-label"></label>
+        <input asp-for="Price" class="form-control" />
+        <span asp-validation-for="Price" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CategoryId" class="form-label">Категория</label>
+        <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="form-select"></select>
+        <span asp-validation-for="CategoryId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description" class="form-label">Описание</label>
+        <textarea asp-for="Description" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Текуща снимка</label><br />
+        @if (!string.IsNullOrEmpty(Model.UrlImg))
+        {
+            <img src="@Model.UrlImg" width="150" class="mb-2" />
+        }
+        else
+        {
+            <div>Няма качена снимка</div>
+        }
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Смяна на снимка</label>
+        <input type="file" name="ImageFile" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Запази</button>
+    <a asp-action="Index" class="btn btn-secondary">Откажи</a>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
