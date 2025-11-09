@@ -38,7 +38,7 @@ public class Program
             if (!context.Categories.Any())
             {
                 context.Categories.AddRange(
-                    new Category { Name = "Супи" },
+                    new Category { Name = "Супa" },
                     new Category { Name = "Оризови ястия" },
                     new Category { Name = "Напитки" },
                     new Category { Name = "Спагети"},
@@ -66,7 +66,7 @@ public class Program
 
         app.MapControllerRoute(
             name: "default",
-            pattern: "{controller=Home}/{action=Index}/{id?}");
+            pattern: "{controller=Menu}/{action=Menu}/{id?}");
         app.MapRazorPages();
 
         app.Run();

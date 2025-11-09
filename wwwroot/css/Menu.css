@@ -1,15 +1,42 @@
-﻿body {
+﻿
+body {
+    background-image: url('/images/menu-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
 }
-.menu-item {
-    width: 50%;
-    height: 100%;
-    border: solid black 1px;
-    background-color: white;
-    border-radius: 15px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
-}
-    #rectangle:hover {
-        background-color: rgb(226, 226, 226);
-        cursor:pointer;
+    body::-webkit-scrollbar {
+        display: none;
     }
+.menu-items {
+    width: 300px;
+    height: 400px;
+    background-color: rgb(255, 255, 255, 0.7);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    padding: 0px;
+    margin: auto;
+    margin-top: 40px;
+}
+
+    .menu-items:hover {
+        background-color: rgb(255, 255, 255, 0.9);
+        cursor: pointer;
+        transform: scale(1.05);
+        box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .menu-items img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+
+    .menu-items h5 {
+        margin-bottom: 10px;
+    }
+.menu-text{
+    font-size:100px;
+}
