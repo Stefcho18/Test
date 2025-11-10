@@ -6,54 +6,72 @@
 
 <h1>Chinese restaurant</h1>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Price)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.UrlImg)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Category)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Price)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.UrlImg)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Description)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Category.Id)
-            </td>
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-            </td>
-        </tr>
-}
-    </tbody>
-</table>
+<link href="https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="~/css/MainPage" asp-append-version="true" />
+
+<div class="container-fluid p-0">
+
+    <!-- Hero секция -->
+    <section class="hero d-flex align-items-center justify-content-center text-center text-white">
+        <div class="overlay"></div>
+        <div class="hero-content">
+            <h1 class="display-3 fw-bold mb-3">Добре дошли в <span class="text-danger">ChinaTaste</span></h1>
+            <p class="lead mb-4">Открий вкуса на традиционната китайска кухня – прясна, ароматна и приготвена с майсторство.</p>
+            <a href="/Menu" class="btn btn-danger btn-lg px-4 py-2">Виж менюто</a>
+        </div>
+    </section>
+
+    <!-- За нас -->
+    <section class="about py-5 text-center bg-light">
+        <div class="container">
+            <h2 class="mb-4">За нас</h2>
+            <p class="text-muted mx-auto" style="max-width: 700px;">
+                В ресторант <strong>ChinaTaste</strong> предлагаме автентични китайски ястия, приготвени по оригинални рецепти.
+                Нашата мисия е да донесем вкуса на Далечния изток близо до вас – с внимание към детайла и любов към храната.
+            </p>
+        </div>
+    </section>
+
+    <!-- Популярни ястия -->
+    <section class="popular py-5">
+        <div class="container text-center">
+            <h2 class="mb-5">Най-популярни ястия</h2>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 shadow">
+                        <img src="/images/dish1.jpg" class="card-img-top" alt="Пиле с ориз">
+                        <div class="card-body">
+                            <h5 class="card-title">Пиле с ориз и зеленчуци</h5>
+                            <p class="card-text">Класическо китайско ястие с ароматен сос и свежи зеленчуци.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow">
+                        <img src="/images/dish2.jpg" class="card-img-top" alt="Сладко-кисел сос">
+                        <div class="card-body">
+                            <h5 class="card-title">Свинско в сладко-кисел сос</h5>
+                            <p class="card-text">Крехко месо с ананас, пипер и неповторим баланс на вкусове.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 shadow">
+                        <img src="/images/dish3.jpg" class="card-img-top" alt="Нудъли">
+                        <div class="card-body">
+                            <h5 class="card-title">Нудъли с морски дарове</h5>
+                            <p class="card-text">Изискана комбинация от скариди, калмари и ароматен соев сос.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакт / Футър -->
+    <footer class="bg-dark text-white text-center py-3">
+        <p class="mb-0">&copy; 2025 ChinaTaste | Всички права запазени.</p>
+    </footer>
+
+</div>
