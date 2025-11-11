@@ -1,4 +1,8 @@
-﻿.hero {
+﻿.main_page {
+    font-family: 'ZCOOL QingKe HuangYou', cursive;
+}
+
+.hero {
     background: url('/images/restaurant-bg.jpg') center/cover no-repeat;
     height: 90vh;
     position: relative;
