@@ -66,7 +66,7 @@ public class Program
 
         app.MapControllerRoute(
             name: "default",
-            pattern: "{controller=Menu}/{action=Menu}/{id?}");
+            pattern: "{controller=MainPage}/{action=MainPage}/{id?}");
         app.MapRazorPages();
 
         app.Run();

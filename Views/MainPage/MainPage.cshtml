@@ -3,22 +3,19 @@
 @{
     ViewData["Title"] = "MainPage";
 }
-
-<h1>Chinese restaurant</h1>
-
 <link href="https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-<link rel="stylesheet" href="~/css/MainPage" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/MainPage.css" asp-append-version="true" />
 
 <div class="main_page container-fluid p-0">
 
     <!-- Hero секция -->
-    <section class="hero d-flex align-items-center justify-content-center text-center text-white">
+    <section class="hero text-center text-white">
         <div class="overlay"></div>
         <div class="hero-content">
-            <h1 class="display-3 fw-bold mb-3 text-center">Добре дошли в <span class="text-danger text-center">ChinaTaste</span></h1>
+            <h1 class="display-3 fw-bold mb-3">Добре дошли в <span class="text-danger">ChinaTaste</span></h1>
             <p class="lead mb-4">Открий вкуса на традиционната китайска кухня – прясна, ароматна и приготвена с майсторство.</p>
-            <a href="/Menu" class="btn btn-danger btn-lg px-4 py-2">Виж менюто</a>
+            <a asp-controller="Menu" asp-action="Menu" class="btn btn-china px-5 py-3 fs-3">🍜 Виж менюто</a>
         </div>
     </section>
 
