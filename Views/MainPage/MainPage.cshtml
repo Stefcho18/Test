@@ -3,22 +3,19 @@
 @{
     ViewData["Title"] = "MainPage";
 }
-
-<h1>Chinese restaurant</h1>
-
 <link href="https://fonts.googleapis.com/css2?family=ZCOOL+QingKe+HuangYou&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-<link rel="stylesheet" href="~/css/MainPage" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/MainPage.css" asp-append-version="true" />
 
-<div class="container-fluid p-0">
+<div class="main_page container-fluid p-0">
 
     <!-- Hero секция -->
-    <section class="hero d-flex align-items-center justify-content-center text-center text-white">
+    <section class="hero text-center text-white">
         <div class="overlay"></div>
         <div class="hero-content">
             <h1 class="display-3 fw-bold mb-3">Добре дошли в <span class="text-danger">ChinaTaste</span></h1>
             <p class="lead mb-4">Открий вкуса на традиционната китайска кухня – прясна, ароматна и приготвена с майсторство.</p>
-            <a href="/Menu" class="btn btn-danger btn-lg px-4 py-2">Виж менюто</a>
+            <a asp-controller="Menu" asp-action="Menu" class="btn btn-china px-5 py-3 fs-3">🍜 Виж менюто</a>
         </div>
     </section>
 
@@ -40,7 +37,7 @@
             <div class="row g-4">
                 <div class="col-md-4">
                     <div class="card h-100 shadow">
-                        <img src="/images/dish1.jpg" class="card-img-top" alt="Пиле с ориз">
+                        <img src="/images/пилзе_с_ориз_зеленчуци.jpeg" class="card-img-top" alt="Пиле с ориз">
                         <div class="card-body">
                             <h5 class="card-title">Пиле с ориз и зеленчуци</h5>
                             <p class="card-text">Класическо китайско ястие с ароматен сос и свежи зеленчуци.</p>
@@ -49,7 +46,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card h-100 shadow">
-                        <img src="/images/dish2.jpg" class="card-img-top" alt="Сладко-кисел сос">
+                        <img src="/images/свинско_с_сладко_кисел_сос.jpeg" class="card-img-top" alt="Сладко-кисел сос">
                         <div class="card-body">
                             <h5 class="card-title">Свинско в сладко-кисел сос</h5>
                             <p class="card-text">Крехко месо с ананас, пипер и неповторим баланс на вкусове.</p>
@@ -58,7 +55,7 @@
                 </div>
                 <div class="col-md-4">
                     <div class="card h-100 shadow">
-                        <img src="/images/dish3.jpg" class="card-img-top" alt="Нудъли">
+                        <img src="/images/нудли_с_морски_дарове.jpeg" class="card-img-top h-100" alt="Нудъли">
                         <div class="card-body">
                             <h5 class="card-title">Нудъли с морски дарове</h5>
                             <p class="card-text">Изискана комбинация от скариди, калмари и ароматен соев сос.</p>
