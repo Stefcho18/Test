@@ -1,12 +1,30 @@
 ﻿
 body {
-    background: linear-gradient(135deg, #ffb3a7 0%, #ffd6d0 50%, #fff0c2 100%);
+    background: linear-gradient(135deg, #fff5e6 0%, #ffe8cc 25%, #ffd9b3 50%, #ffcc99 75%, #ffbf80 100%);
+    background-attachment: fixed;
     color: #fff;
     font-family: 'ZCOOL QingKe HuangYou', cursive;
+    overflow-x: hidden;
+    overflow-y: auto;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
-    body::-webkit-scrollbar {
-        display: none;
-    }
+
+body::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+* {
+    -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
 
 .menu-items {
     width: 300px;
@@ -20,12 +38,14 @@ body {
     margin-top: 40px;
 }
 
+    .menu-items {
+        opacity: 0.9;
+        transition: all 0.3s ease-in-out;
+    }
+
     .menu-items:hover {
-        background: linear-gradient(90deg, #ff6f00, #ff8f00);
-        color: #fff;
-        box-shadow: 0 0 35px rgba(255, 152, 0, 0.7);
+        opacity: 1;
         transform: scale(1.08);
-        border-color: #fff59d;
     }
 
 /*.menu-items {
@@ -56,6 +76,65 @@ body {
     .menu-items h5 {
         margin-bottom: 20px;
     }
-.menu-text{
-    font-size:110px;
+.menu-text {
+    font-size: 110px;
+    font-weight: bold;
+    color: #d32f2f;
+    background: linear-gradient(135deg, #d32f2f 0%, #f44336 25%, #ff5252 50%, #ff6f00 75%, #ff8f00 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: 12px;
+    text-transform: uppercase;
+    position: relative;
+    display: block;
+    width: 100%;
+    text-align: center;
+    animation: glow 2s ease-in-out infinite alternate;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2);
+    margin: 0 auto;
+}
+
+@keyframes glow {
+    from {
+        filter: drop-shadow(0 0 8px rgba(211, 47, 47, 0.6));
+    }
+    to {
+        filter: drop-shadow(0 0 25px rgba(255, 87, 34, 0.9));
+    }
+}
+
+.btn-back-menu {
+    background: linear-gradient(90deg, #e57373, #ff8a80);
+    color: #fff !important;
+    font-weight: bold;
+    font-size: 1.1rem;
+    border: 2px solid #ffd54f;
+    border-radius: 50px;
+    padding: 10px 25px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 4px 12px rgba(211, 47, 47, 0.4);
+    text-decoration: none;
+    display: inline-block;
+}
+
+@media (max-width: 768px) {
+    .btn-back-menu {
+        display: none;
+    }
+}
+
+.btn-back-menu:hover {
+    background: linear-gradient(90deg, #ef5350, #f44336);
+    color: #fff !important;
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(244, 67, 54, 0.6);
+    border-color: #fff59d;
+    text-decoration: none;
+}
+
+.btn-back-menu span {
+    display: inline-block;
 }

@@ -17,11 +17,9 @@ namespace Test.Models
 
         public string? Description { get; set; }
 
-        // Външен ключ към категорията
         [Display(Name = "Категория")]
         public int CategoryId { get; set; }
 
-        // Навигационно свойство
         public Category ?Category { get; set; }
     }
 }
