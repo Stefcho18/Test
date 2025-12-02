@@ -13,7 +13,6 @@ namespace Test.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationDbContext _context;
 
-        // ✅ Правилно — контекстът идва от DI контейнера
         public HomeController(ILogger<HomeController> logger, ApplicationDbContext context)
         {
             _logger = logger;
@@ -38,7 +37,6 @@ namespace Test.Controllers
             if (product == null)
                 return NotFound();
 
-            // Запазваме адреса на страницата, от която сме дошли
             ViewBag.ReturnUrl = returnUrl ?? Url.Action("Index");
             return View(product);
         }
@@ -54,20 +52,19 @@ namespace Test.Controllers
         {
             if (ImageFile != null && ImageFile.Length > 0)
             {
-                // Създаваме пътя до папката wwwroot/images
+             
                 var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
 
-                // Създаваме уникално име на файла
+                
                 var uniqueFileName = Guid.NewGuid().ToString() + "_" + ImageFile.FileName;
                 var filePath = Path.Combine(uploadsFolder, uniqueFileName);
 
-                // Записваме файла
+     
                 using (var stream = new FileStream(filePath, FileMode.Create))
                 {
                     ImageFile.CopyTo(stream);
                 }
 
-                // Записваме пътя в базата
                 product.UrlImg = "/images/" + uniqueFileName;
             }
 
@@ -163,29 +160,27 @@ namespace Test.Controllers
                     ImageFile.CopyTo(stream);
                 }
 
-                // опционално: изтриваме старата снимка ако съществува (проверка)
+             
                 if (!string.IsNullOrEmpty(productInDb.UrlImg))
                 {
                     var oldFilePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", productInDb.UrlImg.TrimStart('/').Replace('/', Path.DirectorySeparatorChar));
                     if (System.IO.File.Exists(oldFilePath))
                     {
-                        try { System.IO.File.Delete(oldFilePath); } catch { /* логни грешка ако искаш */ }
+                        try { System.IO.File.Delete(oldFilePath); } catch {  }
                     }
                 }
 
                 productInDb.UrlImg = "/images/" + uniqueFileName;
             }
 
-            // Обновяваме полетата (без да заменяме цял обект – по-безопасно)
+         
             productInDb.Name = product.Name;
             productInDb.Price = product.Price;
             productInDb.CategoryId = product.CategoryId;
             productInDb.Description = product.Description;
 
-            // Записваме промените
             _context.SaveChanges();
 
-            // пренасочваме обратно към returnUrl (ако е зададен) или към Index
             var destination = returnUrl ?? Url.Action("Index");
             return Redirect(destination);
 

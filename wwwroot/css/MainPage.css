@@ -4,8 +4,28 @@ body {
     margin: 0;
     padding: 0;
     overflow-x: hidden;
-    background: linear-gradient(135deg, #ffb3a7 0%, #ffd6d0 50%, #fff0c2 100%);
+    overflow-y: auto;
+    background: linear-gradient(135deg, #fff5e6 0%, #ffe8cc 25%, #ffd9b3 50%, #ffcc99 75%, #ffbf80 100%);
+    background-attachment: fixed;
     margin:0px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
+* {
+    -ms-overflow-style: none;
+}
+
+*::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
 }
 /* Hero секция */
 .hero {
@@ -46,7 +66,7 @@ body {
         color: #d32f2f;
     }
 
-/* Популярни ястия */
+
 .popular h2 {
     color: #d32f2f;
     font-weight: bold;
@@ -62,9 +82,8 @@ body {
 footer {
     font-size: 0.95rem;
 }
-.hero {
-}
-    .hero .overlay {
+
+.hero .overlay {
         background-image: url('/images/overlay-background.jpeg');
         background-size: cover;
         background-position: center;
