@@ -29,38 +29,38 @@ public class Program
         var app = builder.Build();
 
 
-        using (var scope = app.Services.CreateScope())
-        {
-            var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-            context.Database.Migrate();
+        //using (var scope = app.Services.CreateScope())
+        //{
+        //    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        //    context.Database.Migrate();
 
-            var existingCategories = context.Categories.Select(c => c.Name).ToList();
-            var categoriesToAdd = new List<CategoryViewModel>
-            {
-                new CategoryViewModel { Name = "Супa" },
-                new CategoryViewModel { Name = "Оризови ястия" },
-                new CategoryViewModel { Name = "Напитки" },
-                new CategoryViewModel { Name = "Спагети"},
-                new CategoryViewModel { Name = "Морски дарове" },
-                new CategoryViewModel { Name = "Предястия" },
-                new CategoryViewModel { Name = "Основни ястия" },
-                new CategoryViewModel { Name = "Десерти" },
-                new CategoryViewModel { Name = "Вегетариански ястия" },
-                new CategoryViewModel { Name = "Пилешки ястия" },
-                new CategoryViewModel { Name = "Свински ястия" },
-                new CategoryViewModel { Name = "Телешки ястия" },
-                new CategoryViewModel { Name = "Салати" },
-                new CategoryViewModel { Name = "Суши" },
-                new CategoryViewModel { Name = "Специални ястия" }
-            };
+        //    var existingCategories = context.Categories.Select(c => c.Name).ToList();
+        //    var categoriesToAdd = new List<CategoryViewModel>
+        //    {
+        //        new CategoryViewModel { Name = "Супa" },
+        //        new CategoryViewModel { Name = "Оризови ястия" },
+        //        new CategoryViewModel { Name = "Напитки" },
+        //        new CategoryViewModel { Name = "Спагети"},
+        //        new CategoryViewModel { Name = "Морски дарове" },
+        //        new CategoryViewModel { Name = "Предястия" },
+        //        new CategoryViewModel { Name = "Основни ястия" },
+        //        new CategoryViewModel { Name = "Десерти" },
+        //        new CategoryViewModel { Name = "Вегетариански ястия" },
+        //        new CategoryViewModel { Name = "Пилешки ястия" },
+        //        new CategoryViewModel { Name = "Свински ястия" },
+        //        new CategoryViewModel { Name = "Телешки ястия" },
+        //        new CategoryViewModel { Name = "Салати" },
+        //        new CategoryViewModel { Name = "Суши" },
+        //        new CategoryViewModel { Name = "Специални ястия" }
+        //    };
 
-            var newCategories = categoriesToAdd.Where(c => !existingCategories.Contains(c.Name)).ToList();
-            if (newCategories.Any())
-            {
-                context.Categories.AddRange(newCategories);
-                context.SaveChanges();
-            }
-        }
+        //    var newCategories = categoriesToAdd.Where(c => !existingCategories.Contains(c.Name)).ToList();
+        //    if (newCategories.Any())
+        //    {
+        //        context.Categories.AddRange(newCategories);
+        //        context.SaveChanges();
+        //    }
+        //}
 
 
         if (app.Environment.IsDevelopment())

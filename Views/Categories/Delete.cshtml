@@ -1,0 +1,21 @@
+﻿@model Test.Models.CategoryViewModel
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+<h2 class="text-danger">Сигурен ли си, че искаш да изтриеш тази категория?</h2>
+
+<div class="border p-3 rounded bg-light" style="max-width: 500px;">
+    <dl class="row">
+        <dt class="col-sm-4">Име:</dt>
+        <dd class="col-sm-8">@Model.Name</dd>
+    </dl>
+
+    <form asp-action="Delete" method="post">
+        <input type="hidden" asp-for="Id" />
+        <button type="submit" class="btn btn-danger">🗑️ Изтрий</button>
+        <a asp-action="Index" class="btn btn-secondary">⬅️ Назад</a>
+    </form>
+</div>

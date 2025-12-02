@@ -3,8 +3,11 @@
     ViewData["Title"] = "Добавяне на продукт";
 }
 
-<link rel="stylesheet" href="~/css/Create.css" />
+<link rel="stylesheet" href="~/css/HomeCreate.css" />
 
+<a asp-controller="Home" asp-action="Index" class="btn-back-menu" title="Назад">
+    <span>⬅ Назад</span>
+</a>
 <h2 class="mb-4">Добавяне на нов продукт</h2>
 
 <form asp-action="Create" enctype="multipart/form-data" method="post" class="border p-4 rounded bg-light shadow-sm" style="max-width: 500px;">

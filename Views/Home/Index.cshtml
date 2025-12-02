@@ -1,10 +1,12 @@
 ﻿@model IEnumerable<Test.Models.ProductViewModel>
 
-<link rel="stylesheet" href="~/css/Index.css" />
+<link rel="stylesheet" href="~/css/HomeIndex.css" />
 
+<a asp-action="Create" class="btn btn-success">+ Добави продукт</a>
+<a asp-controller="Categories" asp-action="Index" class="btn btn-success">Категории</a>
 
 <h2>Списък с продукти</h2>
-<a asp-action="Create" class="btn btn-success">+ Добави продукт</a>
+
 
 <table class="table mt-3">
     <thead>
