@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Test.Models.Product>
+﻿@model IEnumerable<Test.Models.ProductViewModel>
 
 <link rel="stylesheet" href="~/css/Index.css" />
 
@@ -39,7 +39,6 @@
 
                 <td>
                         @{
-                            // 🔹 Показваме само първите 20 думи
                             var shortDescription = string.Join(" ", (p.Description ?? "").Split(' ').Take(10));
                         }
                         @shortDescription...

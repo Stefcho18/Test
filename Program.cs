@@ -32,26 +32,26 @@ public class Program
         using (var scope = app.Services.CreateScope())
         {
             var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-            context.Database.Migrate(); 
+            context.Database.Migrate();
 
             var existingCategories = context.Categories.Select(c => c.Name).ToList();
-            var categoriesToAdd = new List<Category>
+            var categoriesToAdd = new List<CategoryViewModel>
             {
-                new Category { Name = "Супa" },
-                new Category { Name = "Оризови ястия" },
-                new Category { Name = "Напитки" },
-                new Category { Name = "Спагети"},
-                new Category { Name = "Морски дарове" },
-                new Category { Name = "Предястия" },
-                new Category { Name = "Основни ястия" },
-                new Category { Name = "Десерти" },
-                new Category { Name = "Вегетариански ястия" },
-                new Category { Name = "Пилешки ястия" },
-                new Category { Name = "Свински ястия" },
-                new Category { Name = "Телешки ястия" },
-                new Category { Name = "Салати" },
-                new Category { Name = "Суши" },
-                new Category { Name = "Специални ястия" }
+                new CategoryViewModel { Name = "Супa" },
+                new CategoryViewModel { Name = "Оризови ястия" },
+                new CategoryViewModel { Name = "Напитки" },
+                new CategoryViewModel { Name = "Спагети"},
+                new CategoryViewModel { Name = "Морски дарове" },
+                new CategoryViewModel { Name = "Предястия" },
+                new CategoryViewModel { Name = "Основни ястия" },
+                new CategoryViewModel { Name = "Десерти" },
+                new CategoryViewModel { Name = "Вегетариански ястия" },
+                new CategoryViewModel { Name = "Пилешки ястия" },
+                new CategoryViewModel { Name = "Свински ястия" },
+                new CategoryViewModel { Name = "Телешки ястия" },
+                new CategoryViewModel { Name = "Салати" },
+                new CategoryViewModel { Name = "Суши" },
+                new CategoryViewModel { Name = "Специални ястия" }
             };
 
             var newCategories = categoriesToAdd.Where(c => !existingCategories.Contains(c.Name)).ToList();
@@ -62,7 +62,7 @@ public class Program
             }
         }
 
-        // 🔧 Pipeline
+
         if (app.Environment.IsDevelopment())
         {
             app.UseMigrationsEndPoint();

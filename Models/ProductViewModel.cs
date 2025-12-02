@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Test.Models
 {
-    public class Product
+    public class ProductViewModel
     {
         public int Id { get; set; }
         [Required(ErrorMessage = "Моля, въведете име на продукта")]
@@ -20,6 +20,6 @@ namespace Test.Models
         [Display(Name = "Категория")]
         public int CategoryId { get; set; }
 
-        public Category ?Category { get; set; }
+        public CategoryViewModel ?Category { get; set; }
     }
 }

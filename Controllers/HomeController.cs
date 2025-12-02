@@ -48,7 +48,7 @@ namespace Test.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Product product, IFormFile ImageFile)
+        public IActionResult Create(ProductViewModel product, IFormFile ImageFile)
         {
             if (ImageFile != null && ImageFile.Length > 0)
             {
@@ -133,7 +133,7 @@ namespace Test.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Edit(int id, Product product, IFormFile? ImageFile, string? returnUrl) {
+        public IActionResult Edit(int id, ProductViewModel product, IFormFile? ImageFile, string? returnUrl) {
             if (id != product.Id) return BadRequest();
 
             if (!ModelState.IsValid) 

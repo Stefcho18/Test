@@ -1,4 +1,4 @@
-﻿@model Test.Models.Product
+﻿@model Test.Models.ProductViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -9,10 +9,9 @@
 <form asp-action="Edit" method="post" enctype="multipart/form-data">
     @Html.AntiForgeryToken()
 
-    <!-- скрито поле с id (MVC model binding ще свърже) -->
+    
     <input type="hidden" asp-for="Id" />
 
-    <!-- скрито поле, в което ще предадем returnUrl от ViewBag (ако има) -->
     <input type="hidden" name="returnUrl" value="@(ViewBag.ReturnUrl ?? Url.Action("Index"))" />
 
     <div class="mb-3">
